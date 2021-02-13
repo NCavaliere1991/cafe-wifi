@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Coffee Locations For Work{% endblock %}
+
+
+{% block content %}
+  <h1>☕{{ num }} Cafes Made for Productivity</h1>
+  <p class="lead">Check out a list of the best Cafes to work in</p>
+    <div class="container-fluid">
+        {% for cafe in cafes %}
+       <div class="card">
+        <img class="cafe-img" width="400"  height='400' align='center' src="{{ cafe.img_url }}">
+           <table class="table">
+               <tr>
+               <th scope="col">{{ cafe.name }}</th>
+                <th scope="col"><a href="{{ cafe.map_url }}">Maps Link</a></th>
+                <th scope="col">Location: {{ cafe.location }}</th>
+                <th scope="col">Has Sockets:{% if cafe.has_sockets %}
+                🔌
+                {% else %}
+                X
+                {% endif %}</th>
+                <th scope="col">Has Toilet: {% if cafe.has_toilet %}
+                🚽
+                {% else %}
+                X
+                {% endif %}</th>
+                <th scope="col">Has Wifi: {% if cafe.has_wifi %}
+                    💻
+                {% else %}
+                X
+                {% endif %}</th>
+                <th scope="col">Can Take Calls: {% if cafe.can_take_calls %}
+                    ☎️
+                {% else %}
+                X
+                {% endif %}</th>
+               <th scope="col"># of Seats: {{ cafe.seats }}</th>
+               <th scope="col">Coffee Price: {{ cafe.coffee_price}}</th>
+           </table>
+       </div>
+        {% endfor %}
+         </div>
+
+
+
+{% endblock %}
